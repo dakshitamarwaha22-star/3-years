@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+
+  /* Mountain background */
+  background: url('mountains.jpg') no-repeat center center/cover;
+}
+
+/* Overlay for softness */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  z-index: -1;
+}
+
+/* Banner */
+.banner {
+  margin-top: 30px;
+  font-size: 2.2rem;
+}
+
+/* Typing text */
+.typing {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  height: 30px;
+}
+
+/* Photo frame */
+.frame {
+  margin-top: 30px;
+  border: 8px solid white;
+  border-radius: 20px;
+  display: inline-block;
+  padding: 10px;
+  background: white;
+}
+
+.frame img {
+  width: 280px;
+  border-radius: 10px;
+}
+
+/* Buttons */
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: #ff6b81;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Hidden message */
+.hidden {
+  display: none;
+  margin-top: 15px;
+  font-size: 1.2rem;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  color: rgba(255,255,255,0.8);
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(-10vh);
+    opacity: 1;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="banner">
+  Happy 3 Years Anniversary 💖 <br>
+  I love you Carrom
+</div>
+
+<div class="typing" id="typing"></div>
+
+<div class="frame">
+  <img id="slideshow" src="photo1.jpg">
+</div>
+
+<br>
+
+<button onclick="playMusic()">Play Our Song 🎶</button>
+<br>
+<button onclick="showMessage()">Click Me 💌</button>
+
+<div class="hidden" id="message">
+  You are my home, my happiness, and my forever ❤️
+</div>
+
+<audio id="music">
+  <source src="song.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+/* Typing effect */
+const text = "Every moment with you feels like a beautiful dream...";
+let i = 0;
+
+function typeEffect() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeEffect, 50);
+  }
+}
+typeEffect();
+
+/* Slideshow */
+const images = ["photo1.jpg", "photo2.jpg", "photo3.jpg"];
+let index = 0;
+
+setInterval(() => {
+  index = (index + 1) % images.length;
+  document.getElementById("slideshow").src = images[index];
+}, 2500);
+
+/* Music */
+function playMusic() {
+  document.getElementById("music").play();
+}
+
+/* Hidden message */
+function showMessage() {
+  document.getElementById("message").style.display = "block";
+}
+
+/* Floating hearts */
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 15 + 10 + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
+}
+
+setInterval(createHeart, 300);
+
+</script>
+
+</body>
+</html>
